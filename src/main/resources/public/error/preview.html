@@ -1,0 +1,175 @@
+<html style="font-family: 'Open Sans',Helvetica, Arial, sans-serif;">
+
+<head>
+    <title>Pulsar Token</title>
+    <style>
+        #box {
+            width: 650px;
+            height: 250px;
+            background: #fff;
+            border: black;
+            margin: auto;
+            padding-top: 20px;
+            padding-right: 40px;
+            padding-bottom: 30px;
+            padding-left: 40px;
+            font-size: 12px;
+        }
+        tr:nth-child(odd) {
+            background-color: #e9eaebbc;
+        }
+        table, th, td {
+            border: 1px solid #d1d1d1;
+            border-collapse: collapse;
+            padding: 2px 10px 3px;
+            line-height: 1.67;
+            color: #363636;
+        }
+        td{
+            font-size: 90%;
+        }
+    </style>
+</head>
+
+<body style="background-color: #363636;">
+    <div id="header" style="font-size: 29px;
+        text-align: center;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        line-height: 1.67;
+        padding: 62px 10px 20px;
+        white-space: normal;
+        color: #ededed;
+        margin-bottom: 40px;">
+        Pulsar Token Generator Preview
+    </div>
+    <div id="box" style="height: auto;">
+        <header style="text-align: center; margin-top: 10px; font-size:24px;">Deprecated UI (Pre-release)</header>
+        <p style="color: #72767b; margin-top: 20px;">The table below shows example Roles (pulled from ID Token on page load) and JSON Web Tokens (Produced with an HTTP Get Request).
+        </p>
+        <br>
+        <table style="width: 100%; text-align: left; ">
+            <thead>
+                <tr style="background-color: #fff;">
+                    <th>Account #</th>
+                    <th>Role Name</th>
+                    <th>Temporary Credentials</th>
+                </tr>
+            </thead>
+            <tbody id="roles" style="font-size: 12px;"></tbody>
+        </table>
+        <br>
+        <form></form>
+        <div id="credsBox" style="display:none">
+            <!-- Credentials Box -->
+            <table id="credsTable" style="width: 100%; text-align: left; ">
+                <thead>
+                    <tr style="background-color: #fff;">
+                        <th>Account</th>
+                        <th>Web Token</th>
+                    </tr>    
+                </thead>
+                <tbody id="creds" style="font-size: 12px;"></tbody>
+            </table>
+            <br><br>
+            <div id="cred-buttons" style="margin-left:90px">
+                <button id="copy-cred-button-win" onclick="copyCredWindows()" >Copy To Clipboard (Windows)</button>
+                <button id="copy-cred-button-linux">Copy To Clipboard (Linux)</button>
+                <button id="close-cred-button" onclick="hideCreds()">Hide Credentials</button>
+            </div>
+        </div>
+        <script>
+            //test data
+            const accts1 = [
+                { num: "101087", name: "XC-Personal-1", link:"#" },
+                { num: "101088", name: "XC-Admin-1", link:"#" },
+                { num: "101089", name: "XC-Admin-2", link:"#" }
+            ]
+            var creds1 = [
+                { num: "101087", jwt:"asdkfa;dsjfkaskdlfj.q3l4kj534j5hlkjfhd.aadfgkhadfg"},
+                { num: "101088", jwt:"wejebfalkdfjvhlskdf.q43jfb2wjregbkj43g.aeshdfahdsg"},
+                { num: "101089", jwt:"tafdjgahfghsjdkfgfj.d1bwdkjdsbjfdsjfjf.adfgsdgfggf"}
+            ]
+            function loadRolesTable(items) {
+                var index=0;
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+                var urlencoded = new URLSearchParams();
+                urlencoded.append("client_id", "pulsar-token-api");
+                urlencoded.append("client_secret", "wmbn9EEYpDHQXZpC3XwYSKfsCL7ENLkv");
+                urlencoded.append("grant_type", "client_credentials");
+
+                var requestOptions = {
+                    method: 'POST',
+                    headers: myHeaders,
+                    body: urlencoded,
+                    redirect: 'follow'
+                };
+
+                const table = document.getElementById("roles");
+                items.forEach(item => {
+                    let row = table.insertRow();
+                    let num = row.insertCell(0);
+                    num.innerHTML = item.num;
+                    let name = row.insertCell(1);
+                    name.innerHTML = "<a href="+item.link+">" + item.name+ "</a>";
+                    let button = row.insertCell(2);
+                    button.innerHTML = "<button id=btn"+index+" type='button' onclick='showCreds("+index+")'>Get Credentials</button>";
+                    
+                    button.addEventListener('click', async _ => {
+                        try {     
+                            fetch("http://localhost:8080/auth/realms/master/protocol/openid-connect/token", requestOptions)
+                                .then(response => response.text())
+                                .then(result => console.log(result))
+                                .catch(error => console.log('error', error));
+                        } catch(err) {
+                            console.error(`Error: ${err}`);
+                        }
+                    });
+                    index++
+                });
+            }
+            function loadCredsTable(index){
+                var credsTbody = document.getElementById('creds');
+                credsTbody.innerHTML = "<tr><th>"+creds1[index].num+"</th><td>"+creds1[index].jwt+"</td></tr>";
+            }
+            function showCreds(index) {
+                //resize UI
+                var box = document.getElementById("box");
+                box.style.height = "360px";
+
+                //populate table with the appropriate Role
+                loadCredsTable(index);
+                //expose the creds div
+                var credsBox = document.getElementById("credsBox");
+                if(credsBox.style.display = "none"){
+                    credsBox.style.display = "block";
+                }
+            }
+            function hideCreds(){
+                //hide credentials functions
+                var credsBox = document.getElementById("credsBox");
+                credsBox.style.display = "none";
+
+                //resize UI
+                var box = document.getElementById("box");
+                box.style.height = "auto";
+            }
+            function copyCredWindows(index){
+                var credText = document.getElementById("creds").innerText;
+                var values = credText.split("\t");
+                var copyText = values[1];
+                // credValue.select();
+                // credValue.setSelectionRange(0, 99999);
+
+                navigator.clipboard.writeText(copyText);
+                alert("Copied the text: "+ copyText);
+            }
+            loadRolesTable(accts1);
+            loadRolesTable([]);
+        </script>
+    </div>
+</body>
+
+</html>
