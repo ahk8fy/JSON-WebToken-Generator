@@ -63,7 +63,7 @@ The Web App validates users through device code authorization.
 
 <br />
 
-    >5.1: Download and unzip Pulsar-Token-Generator
+    >5.1: Download and unzip json-webtoken-generator
     >5.2: Open "..\src\main\resources\application.properties"
     >5.3: Update values for local build (double check server.port (8180 by default) and keycloak.auth-server-url (8080 by default))
         [
@@ -76,7 +76,7 @@ The Web App validates users through device code authorization.
 <br />
 <br />
 
-**6: Build and Run Pulsar Token Generator**
+**6: Build and Run JSON Web Token Generator**
 
 <br />
 
@@ -99,7 +99,7 @@ The Web App validates users through device code authorization.
         /> mvn clean install
         Wait for a successful build
     >6.4: Update Java War file and deploy to port 8180
-        /> java -jar target\pulsar-token-generator-1.0-SNAPSHOT.war
+        /> java -jar target\json-webtoken-generator-1.0-SNAPSHOT.war
         Watch this terminal for logger info
 <br />
 <br />
@@ -118,7 +118,7 @@ The Web App validates users through device code authorization.
         7.4.4: Return to PTG UI and click "Get Credentials" button for the permitted role
         7.4.5: Copy JSON Web Token with "Copy to Clipboard" button under the Role Token Cell
 
-![image](https://github.com/ahk8fy/pulsar-token-generator/assets/47032644/cd504699-c5fd-4de3-9ce4-4ea4df5e81bb)
+![image](https://github.com/ahk8fy/json-webtoken-generator/assets/47032644/cd504699-c5fd-4de3-9ce4-4ea4df5e81bb)
 
 ## Usage
 

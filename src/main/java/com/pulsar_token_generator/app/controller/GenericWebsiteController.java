@@ -1,4 +1,4 @@
-package com.pulsar_token_generator.app.controller;
+package com.json_webtoken_generator.app.controller;
 
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-// import com.pulsar_token_generator.app.App;
-import com.pulsar_token_generator.app.model.Role;
-import com.pulsar_token_generator.app.service.RoleService;
-import com.pulsar_token_generator.app.service.TokenService;
+// import com.json_webtoken_generator.app.App;
+import com.json_webtoken_generator.app.model.Role;
+import com.json_webtoken_generator.app.service.RoleService;
+import com.json_webtoken_generator.app.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties.Jwt;

@@ -1,4 +1,4 @@
-package com.pulsar_token_generator.app.model;
+package com.json_webtoken_generator.app.model;
 
 import java.util.Base64;
 import org.keycloak.KeycloakSecurityContext;

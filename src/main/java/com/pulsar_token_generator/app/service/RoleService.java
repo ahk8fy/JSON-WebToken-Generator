@@ -1,6 +1,6 @@
-package com.pulsar_token_generator.app.service;
+package com.json_webtoken_generator.app.service;
 
-import com.pulsar_token_generator.app.model.Role;
+import com.json_webtoken_generator.app.model.Role;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;

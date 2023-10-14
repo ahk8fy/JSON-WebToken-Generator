@@ -1,4 +1,4 @@
-package com.pulsar_token_generator.app;
+package com.json_webtoken_generator.app;
 
 import org.junit.jupiter.api.Test;
 
