@@ -1,4 +1,4 @@
-package com.pulsar_token_generator.app.controller;
+package com.json_webtoken_generator.app.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;

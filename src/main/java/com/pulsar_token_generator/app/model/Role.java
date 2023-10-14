@@ -1,4 +1,4 @@
-package com.pulsar_token_generator.app.model;
+package com.json_webtoken_generator.app.model;
 
 import org.jboss.logging.Logger;
 import java.net.URI;

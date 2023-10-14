@@ -8,7 +8,7 @@
         >
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <script type="text/javascript" src="/js/tokens.js"></script>
-        <title>Pulsar Token</title>
+        <title>JSON Web Token</title>
     </head>
     <body>
         <div class="statusBar">
@@ -39,7 +39,7 @@
                 <main role="main" class="inner cover">
                     <h1 class="cover-heading">Welcome ${userName}!</h1>
                     <p class="lead">
-                    The above dropdown lists the Pulsar roles you are assigned to. Please select a single role to authenticate. 
+                    The above dropdown lists the JSON Web roles you are assigned to. Please select a single role to authenticate. 
                     <br><br>
                     If no roles are available, contact your Keycloak Administrator.
                 </p>

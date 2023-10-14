@@ -1,4 +1,4 @@
-package com.pulsar_token_generator.app.config;
+package com.json_webtoken_generator.app.config;
 
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
