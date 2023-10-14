@@ -60,9 +60,11 @@ public class TokenService {
 
         //   System.out.println("Name: "+name);
 
+        }else{
+            name = "No Name";
         }
 
-        logger.info("userName: " + name);
+        logger.info("Legal Name: " + name);
         
         return name;        
     }
